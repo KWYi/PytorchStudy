@@ -29,4 +29,4 @@ for data in data_loader:  # data 객체로 data_loader의 성분을 불러옴
     classification_results = mlp(input)  # mlp.pt의 가중치를 입력받은 MLP 클래스의 인스턴스 mlp 에 인풋을 입력
     nb_correct_answers += torch.eq(classification_results.argmax(), label).sum()  # torch.eq(x,y): x,y가 같으면 1 출력
     # .sum을 통해 한 batch 내에서 맞춘 갯수를 출력. .sum() 없으면 batch_size의 행렬에 각 성분마다 정답이면1, 정답이 아니면 0 돌려줌.([0,0,1,1,0,0,1])
-print("Average acc.: {} %.".format(float(nb_correct_answers) / len(data_loader) *100))  # 정답률 출력
+print("Average acc.: {} %.".format(float(nb_correct_answers) / int(len(data_loader)/16) *100))  # 정답률 출력
