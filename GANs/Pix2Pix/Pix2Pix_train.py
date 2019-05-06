@@ -7,7 +7,7 @@ if __name__ == '__main__':
     from Pix2Pix_models import Discriminator, Generator
     from pipeline import CustomDataset
 
-    DEVICE = torch.device("gpu:0" if torch.cuda.is_available() else "cpu:0")
+    DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu:0")
     DIR_IMAGE = 'pix2pix\\checkpoint\\IMAGE\\'
     DIR_MODEL = 'pix2pix\\checkpoint\\MODEL\\'
     EPOCHS = 10
