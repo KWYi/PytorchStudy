@@ -63,7 +63,13 @@ if __name__ == '__main__':  # 이하의 구문이 이 파일내에서 직접 실
             optim.step()  # Weights adjust themself using given gradient.
             # 각 객체가 부여받은 loss 값을 선언한 옵티마이저 설정에 맞게 수정하여 가중치에 반영
 
-    torch.save(model, '{}.pt'.format(MODEL))  # mlp.pt 라는 이름으로 모델의 가중치&바이어스 파일 저장
+    torch.save(model, '{}.pt'.format(MODEL))
+    # mlp.pt 라는 이름으로 모델의 가중치&바이어스 파일 저장
+    # 하지만 가중치 + 모델 구조를 동시에 저장하기에 저장한 모델을 불러오는 폴더에 모델 구조 파일(models.py)가 같이 있어야 함
+
+    torch.save(model.state_dict(), 'MNIST_model_{}.pt'.format(MODEL))
+    # 위처럼 저장할 시 .pt 파일로 모델의 가중치만 dictionary 형식으로 저장됨.
+    # 이 경우 가중치 파일과 models 파일이 같은 폴더 내에 있을 필요가 없음. 따로 저장해도 됨 -> 관리 Good!
 
     plt.figure()
     plt.plot(range(len(list_loss)), list_loss)
