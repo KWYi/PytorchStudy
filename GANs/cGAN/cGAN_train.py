@@ -61,7 +61,7 @@ if __name__ == '__main__':
             optim_D.step()
 
             loss_G = -torch.mean(torch.log(D(fake, one_hot)))  # Non saturating loss
-            # For saturaing loss, loss_G = torch.mean(torch.log(1-D(fake)))
+            # For saturaing loss, loss_G = - torch.mean(torch.log(1-D(fake)))
             optim_G.zero_grad()
             loss_G.backward()
             optim_G.step()
