@@ -83,7 +83,7 @@ class ResidualNetwork(nn.Module):
 
         network += [nn.AdaptiveAvgPool2d((1,1)), View(-1), nn.Linear(64, 10)]
         self.network = nn.Sequential(*network)
-        self.apply(init_weights)  # 모든 웨이트들이 apply안에 함수를 통과함
+        self.network.apply(init_weights)  # 모든 웨이트들이 apply안에 함수를 통과함
 
         # 업데이트 가능한 파라미터들(grad 가짐)의 수를 모두 더해 출력
         print(sum(p.numel() for p in self.parameters() if p.requires_grad))
