@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
             # LOSS 직접 지정. BInary Cross Entropy.  // fake.detach(): fake에게는 loss를 이용한 업데이트가 가지 않음
             # 어차피 optim_D는 D.parameter만 받기 때문에 fake=G()를 업데이트 시키지 못하지만, 계산 낭비가 일어남
-            loss_D = -torch.mean(torch.log(D(real, one_hot)) - torch.log(1 - D(fake.detach(), one_hot)))
+            loss_D = -torch.mean(torch.log(D(real, one_hot)) + torch.log(1 - D(fake.detach(), one_hot)))
             optim_D.zero_grad()
             loss_D.backward()
             optim_D.step()
